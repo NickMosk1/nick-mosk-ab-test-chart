@@ -1,38 +1,18 @@
-import { useCallback, useMemo } from 'react';
+import { useMemo } from 'react';
 import ChartService from '../services/chart.service';
-import { Endpoint, ElementId, PreparedChartData, ChartSettings, RawChartData, Variation } from '@/shared/types';
+import { ElementId } from '@/shared/types';
 import { useStores } from '@/shared/hooks';
 
-interface UseChartDataReturn {
-  rawData?: RawChartData;
-  preparedData?: PreparedChartData;
-  rechartsData: any[];
-
-  isLoading: boolean;
-  hasData: boolean;
-
-  conversionRateRange: { min: number; max: number };
-  settings: ChartSettings | undefined;
-  enabledVariations: Variation[];
-
-  fetchData: () => Promise<void>;
-};
-
-const useChartData = (
-  chartId: ElementId,
-  endpoint: Endpoint,
-): UseChartDataReturn => {
+const useChartData = (chartId: ElementId) => {
   const { chartStore } = useStores();
   const chartService = ChartService.getInstance();
 
   const rawData = chartStore.getChartData(chartId);
   const settings = chartStore.getChartSettings(chartId);
   const isLoading = chartStore.getChartDataLoadingState(chartId);
+  
   const hasData = !!rawData?.length;
-
-  const enabledVariations = useMemo(() => {
-    return settings?.variations.filter(v => v.enabled) || [];
-  }, [settings]);
+  const enabledVariations = settings?.variations.filter(v => !!v.enabled) || [];
 
   const preparedData = useMemo(() => {
     if (!rawData || !settings) return;
@@ -49,20 +29,12 @@ const useChartData = (
     return chartService.getConversionRateRange(preparedData);
   }, [preparedData, chartService]);
 
-  const fetchData = useCallback(async () => {
-    await chartService.fetchChartData(endpoint, chartId);
-  }, [endpoint, chartId, chartService]);
-
   return {
-    rawData,
-    preparedData,
     rechartsData,
     conversionRateRange,
-    settings,
     enabledVariations,
     isLoading,
     hasData,
-    fetchData,
   };
 };
 

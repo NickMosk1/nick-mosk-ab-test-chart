@@ -1,12 +1,14 @@
 import { observer } from 'mobx-react-lite';
 import styles from './Controls.module.css';
-import { ExportButton, LineStyleSelector, TimeRangeSelector, VariationsSelector, ZoomControls } from './components';
+import { ExportButton, LineStyleSelector, TimeRangeSelector, VariationsSelector } from './components';
+import { Nullable } from '@/shared/types';
 
 interface ControlsProps {
   chartId: string;
+  chartRef: React.RefObject<Nullable<HTMLDivElement>>;
 };
 
-const Controls: React.FC<ControlsProps> = observer(({ chartId }) => {
+const Controls: React.FC<ControlsProps> = observer(({ chartId, chartRef }) => {
   return (
     <div className={styles.controlsContainer}>
       <div className={styles.primaryControls}>
@@ -16,8 +18,10 @@ const Controls: React.FC<ControlsProps> = observer(({ chartId }) => {
       </div>
 
       <div className={styles.secondaryControls}>
-        <ZoomControls chartId={chartId} />
-        <ExportButton chartId={chartId} />
+        <ExportButton 
+          chartId={chartId} 
+          chartElement={chartRef?.current}
+        />
       </div>
     </div>
   );

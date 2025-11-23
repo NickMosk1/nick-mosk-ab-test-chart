@@ -3,47 +3,48 @@
   justify-content: space-between;
   align-items: flex-start;
   gap: 16px;
-  margin-bottom: 20px;
+  margin: 20px 0;
   flex-wrap: wrap;
-};
+}
 
 .primaryControls {
   display: flex;
-  align-items: center;
-  gap: 24px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
   flex-wrap: wrap;
   flex: 1;
-};
+}
 
 .secondaryControls {
   display: flex;
   align-items: center;
   gap: 12px;
   flex-shrink: 0;
-};
+}
 
 @media (max-width: 768px) {
   .controlsContainer {
     flex-direction: column;
     gap: 12px;
-  };
+  }
 
   .primaryControls {
     width: 100%;
     justify-content: space-between;
     gap: 16px;
-  };
+  }
 
   .secondaryControls {
     width: 100%;
     justify-content: flex-end;
-  };
-};
+  }
+}
 
 @media (max-width: 480px) {
   .primaryControls {
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
-  };
-};
+  }
+}

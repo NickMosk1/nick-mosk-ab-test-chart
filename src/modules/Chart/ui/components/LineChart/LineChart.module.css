@@ -5,46 +5,6 @@
   position: relative;
 };
 
-.tooltip {
-  background: #ffffff;
-  border: 1px solid #e1e5e9;
-  border-radius: 6px;
-  padding: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-};
-
-.tooltipDate {
-  font-weight: 600;
-  margin-bottom: 8px;
-  color: #1a1a1a;
-  font-size: 14px;
-};
-
-.tooltipItem {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 4px;
-  font-size: 13px;
-};
-
-.tooltipColor {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  flex-shrink: 0;
-};
-
-.tooltipName {
-  color: #666;
-  min-width: 80px;
-};
-
-.tooltipValue {
-  font-weight: 600;
-  color: #1a1a1a;
-};
-
 .legend {
   display: flex;
   justify-content: center;

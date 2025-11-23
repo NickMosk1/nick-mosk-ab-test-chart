@@ -19,7 +19,7 @@ const Header: React.FC<HeaderProps> = observer(({ className = '' }) => {
       <header className={`${styles.header} ${className}`}>
         <div className={styles.headerContent}>
           <div className={styles.pageInfo}>
-            <h1 className={styles.pageTitle}>Page Not Found</h1>
+            <div className={styles.pageTitle}>Page Not Found</div>
           </div>
           <div className={styles.headerActions}>
             {/* Пока без тоггла темы */}
@@ -33,7 +33,7 @@ const Header: React.FC<HeaderProps> = observer(({ className = '' }) => {
     <header className={`${styles.header} ${className}`}>
       <div className={styles.headerContent}>
         <div className={styles.pageInfo}>
-          <h1 className={styles.pageTitle}>{currentPage.title}</h1>
+          <div className={styles.pageTitle}>{currentPage.title}</div>
         </div>
         <div className={styles.headerActions}>
           {/* Пока без тоггла темы */}

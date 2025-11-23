@@ -1,20 +1,17 @@
 import { ElementTypes, Endpoint } from "@/shared/types";
 
-export enum ChartType {
-  LINE = "line",
-  BAR = "bar",
-  AREA = "area",
-};
-
 export enum TimeRange {
   DAY = "day",
   WEEK = "week",
 };
 
 export enum LineStyle {
-  LINE = "line",
-  SMOOTH = "smooth",
-  AREA = "area",
+  MONOTONE = "monotone",
+  NATURAL = "natural",
+  LINEAR = "linear",
+  STEP = "step",
+  BUMP = "bump",
+  BASIS = "basis",
 };
 
 export type VariationId = string;

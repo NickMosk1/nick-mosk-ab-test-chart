@@ -1,4 +1,4 @@
-.timeRangeSelector {
+.chipGroup {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -11,7 +11,7 @@
   white-space: nowrap;
 }
 
-.buttonGroup {
+.chipContainer {
   display: flex;
   align-items: center;
   gap: 2px;
@@ -22,10 +22,11 @@
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
-.button {
+.chip {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 8px;
   padding: 8px 16px;
   border: none;
   background: transparent;
@@ -38,15 +39,16 @@
   white-space: nowrap;
   min-height: 36px;
   min-width: 60px;
+  font-family: inherit;
 }
 
-.button:hover {
+.chip:hover {
   color: #374151;
   background: #f1f5f9;
   transform: translateY(-1px);
 }
 
-.button.active {
+.chip.active {
   background: #ffffff;
   color: #1e293b;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -54,19 +56,38 @@
   font-weight: 600;
 }
 
-.button.active:hover {
+.chip.active:hover {
   background: #ffffff;
   transform: translateY(-1px);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Анимация переключения */
-.button {
+.colorDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.chip.active .colorDot {
+  border-color: #ffffff;
+  box-shadow: 0 0 0 1px #3b82f6;
+}
+
+.labelText {
+  font-size: 13px;
+  font-weight: inherit;
+}
+
+/* Анимация */
+.chip {
   position: relative;
   overflow: hidden;
 }
 
-.button::after {
+.chip::after {
   content: '';
   position: absolute;
   top: 50%;
@@ -79,26 +100,27 @@
   transform: translate(-50%, -50%);
 }
 
-.button:active::after {
+.chip:active::after {
   width: 100px;
   height: 100px;
 }
 
+/* Responsive */
 @media (max-width: 768px) {
-  .timeRangeSelector {
+  .chipGroup {
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
     width: 100%;
   }
 
-  .buttonGroup {
+  .chipContainer {
     flex-wrap: wrap;
     justify-content: flex-start;
     width: 100%;
   }
 
-  .button {
+  .chip {
     flex: 1;
     min-width: 0;
     padding: 8px 12px;
@@ -106,15 +128,24 @@
 }
 
 @media (max-width: 480px) {
-  .buttonGroup {
+  .chipContainer {
     gap: 1px;
     padding: 2px;
   }
 
-  .button {
+  .chip {
     padding: 6px 10px;
     font-size: 12px;
     min-height: 32px;
     min-width: 50px;
+  }
+
+  .labelText {
+    font-size: 12px;
+  }
+
+  .colorDot {
+    width: 10px;
+    height: 10px;
   }
 }

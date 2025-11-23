@@ -57,10 +57,6 @@
   padding: 20px;
 };
 
-.errorIcon {
-  font-size: 48px;
-};
-
 .errorText {
   display: flex;
   flex-direction: column;

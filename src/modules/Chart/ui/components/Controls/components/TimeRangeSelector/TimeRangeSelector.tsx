@@ -1,11 +1,16 @@
 import { observer } from 'mobx-react-lite';
-import styles from './TimeRangeSelector.module.css';
 import { useStores } from '@/shared/hooks';
-import { TimeRange } from '@/shared/types';
+import { ChipOption, ChipSelectionMode, TimeRange } from '@/shared/types';
+import { ChipGroup } from '@/shared/ui';
 
 interface TimeRangeSelectorProps {
   chartId: string;
 };
+
+const mockTimeRangeOptions: ChipOption[] = [
+  { value: TimeRange.DAY, label: 'Day' },
+  { value: TimeRange.WEEK, label: 'Week' },
+];
 
 const TimeRangeSelector: React.FC<TimeRangeSelectorProps> = observer(({ chartId }) => {
   const { chartStore } = useStores();
@@ -16,23 +21,13 @@ const TimeRangeSelector: React.FC<TimeRangeSelectorProps> = observer(({ chartId 
   const handleTimeRangeChange = (timeRange: TimeRange) => chartStore.setTimeRange(chartId, timeRange);
 
   return (
-    <div className={styles.timeRangeSelector}>
-      <label className={styles.label}>View:</label>
-      <div className={styles.buttonGroup}>
-        <button
-          className={`${styles.button} ${settings.timeRange === TimeRange.DAY ? styles.active : ''}`}
-          onClick={() => handleTimeRangeChange(TimeRange.DAY)}
-        >
-          Day
-        </button>
-        <button
-          className={`${styles.button} ${settings.timeRange === TimeRange.WEEK ? styles.active : ''}`}
-          onClick={() => handleTimeRangeChange(TimeRange.WEEK)}
-        >
-          Week
-        </button>
-      </div>
-    </div>
+    <ChipGroup
+      options={mockTimeRangeOptions}
+      value={settings.timeRange}
+      onChange={handleTimeRangeChange}
+      mode={ChipSelectionMode.SINGLE}
+      label="View:"
+    />
   );
 });
 

@@ -1,11 +1,20 @@
 import { observer } from 'mobx-react-lite';
-import styles from './LineStyleSelector.module.css';
 import { useStores } from '@/shared/hooks';
-import { LineStyle } from '@/shared/types';
+import { ChipOption, ChipSelectionMode, LineStyle } from '@/shared/types';
+import { ChipGroup } from '@/shared/ui';
 
 interface LineStyleSelectorProps {
   chartId: string;
 };
+
+const mockLineStyleOptions: ChipOption[] = [
+  { value: LineStyle.MONOTONE, label: 'Line' },
+  { value: LineStyle.NATURAL, label: 'Natural' },
+  { value: LineStyle.LINEAR, label: 'Linear' },
+  { value: LineStyle.STEP, label: 'Step' },
+  { value: LineStyle.BUMP, label: 'Bumb' },
+  { value: LineStyle.BASIS, label: 'Basis' },
+];
 
 const LineStyleSelector: React.FC<LineStyleSelectorProps> = observer(({ chartId }) => {
   const { chartStore } = useStores();
@@ -15,29 +24,14 @@ const LineStyleSelector: React.FC<LineStyleSelectorProps> = observer(({ chartId 
 
   const handleLineStyleChange = (lineStyle: LineStyle) => chartStore.setLineStyle(chartId, lineStyle);
 
-  const stylesConfig = { //consts
-    [LineStyle.LINE]: { label: 'Line', icon: '📈' },
-    [LineStyle.SMOOTH]: { label: 'Smooth', icon: '🔄' },
-    [LineStyle.AREA]: { label: 'Area', icon: '🔽' }
-  };
-
   return (
-    <div className={styles.lineStyleSelector}>
-      <label className={styles.label}>Style:</label>
-      <div className={styles.buttonGroup}>
-        {Object.entries(stylesConfig).map(([key, config]) => (
-          <button
-            key={key}
-            className={`${styles.button} ${settings.lineStyle === key ? styles.active : ''}`}
-            onClick={() => handleLineStyleChange(key as LineStyle)}
-            title={config.label}
-          >
-            <span className={styles.icon}>{config.icon}</span>
-            <span className={styles.labelText}>{config.label}</span>
-          </button>
-        ))}
-      </div>
-    </div>
+    <ChipGroup
+      options={mockLineStyleOptions}
+      value={settings.lineStyle}
+      onChange={handleLineStyleChange}
+      mode={ChipSelectionMode.SINGLE}
+      label="Style:"
+    />
   );
 });
 

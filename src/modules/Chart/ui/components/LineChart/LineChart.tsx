@@ -9,69 +9,29 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import styles from "./LineChart.module.css";
-import { Variation } from "@/shared/types";
+import { Variation, LineStyle } from "@/shared/types";
+import { Tooltip as CustomTooltip, Legend as CustomLegend } from "./components";
 
 interface LineChartProps {
   data: any[];
   variations: Variation[];
   conversionRateRange: { min: number; max: number };
+  lineStyle: LineStyle;
 };
 
 const LineChart: React.FC<LineChartProps> = ({
   data,
   variations,
   conversionRateRange,
+  lineStyle,
 }) => {
-  const renderTooltip = (props: any) => {
-    const { active, payload, label } = props;
-
-    if (active && payload && payload.length) {
-      return (
-        <div className={styles.tooltip}>
-          <div className={styles.tooltipDate}>{label}</div>
-          {payload.map((entry: any, index: number) => (
-            <div key={index} className={styles.tooltipItem}>
-              <span
-                className={styles.tooltipColor}
-                style={{ backgroundColor: entry.color }}
-              />
-              <span className={styles.tooltipName}>{entry.name}:</span>
-              <span className={styles.tooltipValue}>
-                {typeof entry.value === "number" ? entry.value.toFixed(2) + "%" : entry.value}
-              </span>
-            </div>
-          ))}
-        </div>
-      );
-    }
-    return null;
-  };
-
-  const renderLegend = (props: any) => {
-    const { payload } = props;
-
-    return (
-      <div className={styles.legend}>
-        {payload.map((entry: any, index: number) => (
-          <div key={index} className={styles.legendItem}>
-            <span
-              className={styles.legendColor}
-              style={{ backgroundColor: entry.color }}
-            />
-            <span className={styles.legendText}>{entry.value}</span>
-          </div>
-        ))}
-      </div>
-    );
-  };
-
   return (
     <div className={styles.lineChart}>
       <ResponsiveContainer width="100%" height={400}>
         <RechartsLineChart
           data={data}
           margin={{ top: 20, right: 30, left: 20, bottom: 10 }}
-        >
+        >          
           <CartesianGrid
             strokeDasharray="3 3"
             stroke="#f0f0f0"
@@ -90,12 +50,12 @@ const LineChart: React.FC<LineChartProps> = ({
             tickLine={false}
             tickFormatter={(value) => `${value.toFixed(1)}%`}
           />
-          <Tooltip content={renderTooltip} />
-          <Legend content={renderLegend} />
+          <Tooltip content={<CustomTooltip />} />
+          <Legend content={<CustomLegend />} />
           {variations.map((variation) => (
             <Line
               key={variation.id}
-              type="monotone"
+              type={lineStyle}
               dataKey={`variation_${variation.id}`}
               name={variation.name}
               stroke={variation.color}

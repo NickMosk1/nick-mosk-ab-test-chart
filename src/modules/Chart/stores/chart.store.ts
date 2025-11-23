@@ -59,9 +59,8 @@ class ChartStore {
   toggleVariation(elementId: ElementId, variationId: string) {
     const settings = this._chartSettings[elementId];
     if (settings) {
-      const enabledCount = settings.variations.filter(v => v.enabled).length;
       const variation = settings.variations.find(v => v.id === variationId);
-      if (variation && (enabledCount > 1 || !variation.enabled)) variation.enabled = !variation.enabled;
+      if (variation) variation.enabled = !variation.enabled;
     };
   };
 

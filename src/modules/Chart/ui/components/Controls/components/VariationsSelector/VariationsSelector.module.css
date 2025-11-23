@@ -1,75 +1,125 @@
 .variationsSelector {
   display: flex;
   align-items: center;
-  gap: 8px;
-};
+  gap: 12px;
+}
 
 .label {
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   color: #374151;
   white-space: nowrap;
-};
+}
 
 .variationsList {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   flex-wrap: wrap;
-};
+}
 
-.variationItem {
+.variationChip {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   cursor: pointer;
-  padding: 4px 8px;
-  border-radius: 4px;
-  transition: background-color 0.2s;
-};
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  min-height: 36px;
+  border: none;
+  font-family: inherit;
+}
 
-.variationItem:hover {
-  background-color: #f3f4f6;
-};
+.variationChip:hover {
+  background: #f1f5f9;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
 
-.checkbox {
-  margin: 0;
-  cursor: pointer;
-};
+.variationChip.active {
+  background: #ffffff;
+  color: #1e293b;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #3b82f6;
+  font-weight: 600;
+}
+
+.variationChip.active:hover {
+  background: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
 .colorDot {
   width: 12px;
   height: 12px;
   border-radius: 50%;
   flex-shrink: 0;
-};
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.variationChip.active .colorDot {
+  border-color: #ffffff;
+  box-shadow: 0 0 0 1px #3b82f6;
+}
 
 .variationName {
-  font-size: 14px;
-  color: #374151;
+  font-size: 13px;
+  font-weight: 500;
+  color: #64748b;
   white-space: nowrap;
-};
+  transition: color 0.2s ease;
+}
+
+.variationChip.active .variationName {
+  color: #1e293b;
+  font-weight: 600;
+}
 
 @media (max-width: 768px) {
-  .variationsList {
-    gap: 8px;
-  };
-
-  .variationItem {
-    padding: 3px 6px;
-  };
-};
-
-@media (max-width: 480px) {
   .variationsSelector {
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
-  };
+    width: 100%;
+  }
 
   .variationsList {
+    gap: 6px;
+    width: 100%;
+  }
+
+  .variationChip {
+    flex: 1;
+    min-width: 0;
+    justify-content: center;
+    padding: 6px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .variationsList {
     flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-  };
-};
+    align-items: stretch;
+    gap: 4px;
+  }
+
+  .variationChip {
+    padding: 8px 12px;
+    min-height: 32px;
+    justify-content: flex-start;
+  }
+
+  .variationName {
+    font-size: 12px;
+  }
+
+  .colorDot {
+    width: 10px;
+    height: 10px;
+  }
+}

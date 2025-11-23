@@ -1,6 +1,7 @@
 import { observer } from 'mobx-react-lite';
-import styles from './VariationsSelector.module.css';
 import { useStores } from '@/shared/hooks';
+import { ChipOption, ChipSelectionMode } from '@/shared/types';
+import { ChipGroup } from '@/shared/ui';
 
 interface VariationsSelectorProps {
   chartId: string;
@@ -12,35 +13,30 @@ const VariationsSelector: React.FC<VariationsSelectorProps> = observer(({ chartI
 
   if (!settings) return null;
 
-  const enabledVariations = settings.variations.filter(v => v.enabled);
-
-  const handleVariationToggle = (variationId: string) => {
-    if (enabledVariations.length > 1 || !settings.variations.find(v => v.id === variationId)?.enabled) {
-      chartStore.toggleVariation(chartId, variationId);
-    };
+  const handleVariationsChange = (selectedValues: string | string[]) => {
+    const selectedArray = Array.isArray(selectedValues) ? selectedValues : [selectedValues];
+    settings.variations.forEach(variation => {
+      const shouldBeEnabled = selectedArray.includes(variation.id);
+      if (variation.enabled !== shouldBeEnabled) chartStore.toggleVariation(chartId, variation.id);
+    });
   };
 
+  const variationOptions: ChipOption[] = settings.variations.map(variation => ({
+    value: variation.id,
+    label: variation.name,
+    color: variation.color,
+  }));
+
+  const selectedVariations = settings.variations.filter(v => v.enabled).map(v => v.id);
+
   return (
-    <div className={styles.variationsSelector}>
-      <label className={styles.label}>Variations:</label>
-      <div className={styles.variationsList}>
-        {settings.variations.map(variation => (
-          <label key={variation.id} className={styles.variationItem}>
-            <input
-              type="checkbox"
-              checked={variation.enabled}
-              onChange={() => handleVariationToggle(variation.id)}
-              className={styles.checkbox}
-            />
-            <span
-              className={styles.colorDot}
-              style={{ backgroundColor: variation.color }}
-            />
-            <span className={styles.variationName}>{variation.name}</span>
-          </label>
-        ))}
-      </div>
-    </div>
+    <ChipGroup
+      options={variationOptions}
+      value={selectedVariations}
+      onChange={handleVariationsChange}
+      mode={ChipSelectionMode.MULTIPLE}
+      label="Variations:"
+    />
   );
 });
 

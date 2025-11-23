@@ -31,7 +31,6 @@ const ChartContainer: React.FC<PropsWithChildren<ChartContainerProps>> = ({
     return (
       <div className={`${styles.container} ${styles.error} ${className}`}>
         <div className={styles.errorContent}>
-          <div className={styles.errorIcon}>⚠️</div>
           <div className={styles.errorText}>
             <h3 className={styles.errorTitle}>Failed to load chart</h3>
             <p className={styles.errorDescription}>{error}</p>

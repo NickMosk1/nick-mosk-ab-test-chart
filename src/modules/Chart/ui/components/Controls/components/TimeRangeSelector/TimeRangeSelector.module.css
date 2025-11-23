@@ -1,0 +1,57 @@
+.timeRangeSelector {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+};
+
+.label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  white-space: nowrap;
+};
+
+.buttonGroup {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #f3f4f6;
+  border-radius: 6px;
+  padding: 2px;
+};
+
+.button {
+  padding: 6px 12px;
+  border: none;
+  background: transparent;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+};
+
+.button:hover {
+  color: #374151;
+  background: #e5e7eb;
+};
+
+.button.active {
+  background: #ffffff;
+  color: #111827;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+};
+
+@media (max-width: 480px) {
+  .timeRangeSelector {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  };
+
+  .buttonGroup {
+    flex-wrap: wrap;
+  };
+};

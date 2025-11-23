@@ -1,0 +1,32 @@
+.pageElement {
+  margin-bottom: 32px;
+}
+
+.unknownElement {
+  padding: 32px;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  border: 2px dashed #cbd5e1;
+  border-radius: 16px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.unknownElement:hover {
+  border-color: #94a3b8;
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.unknownElement h3 {
+  color: #475569;
+  margin-bottom: 12px;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.unknownElement p {
+  color: #64748b;
+  margin: 6px 0;
+  font-size: 0.95rem;
+}

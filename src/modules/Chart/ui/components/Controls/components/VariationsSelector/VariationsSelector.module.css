@@ -1,0 +1,75 @@
+.variationsSelector {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+};
+
+.label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  white-space: nowrap;
+};
+
+.variationsList {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+};
+
+.variationItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+};
+
+.variationItem:hover {
+  background-color: #f3f4f6;
+};
+
+.checkbox {
+  margin: 0;
+  cursor: pointer;
+};
+
+.colorDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+};
+
+.variationName {
+  font-size: 14px;
+  color: #374151;
+  white-space: nowrap;
+};
+
+@media (max-width: 768px) {
+  .variationsList {
+    gap: 8px;
+  };
+
+  .variationItem {
+    padding: 3px 6px;
+  };
+};
+
+@media (max-width: 480px) {
+  .variationsSelector {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  };
+
+  .variationsList {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  };
+};

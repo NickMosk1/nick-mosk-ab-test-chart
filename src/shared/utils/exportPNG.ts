@@ -1,5 +1,5 @@
-import { toPng } from "html-to-image";
-import { Nullable } from "@/shared/types";
+import domtoimage from 'dom-to-image';
+import { Nullable } from '../types';
 
 export const handleExport = async (
   target?: Nullable<HTMLElement>,
@@ -8,21 +8,24 @@ export const handleExport = async (
   if (!target) {
     console.error('Chart element not found for export');
     return;
-  };
+  }
 
   try {
-    const dataUrl = await toPng(target, {
+    const dataUrl = await domtoimage.toPng(target, {
       quality: 1.0,
-      pixelRatio: 2,
-      backgroundColor: '#ffffff',
-      cacheBust: true,
-      style: { transform: 'none' },
+      width: target.clientWidth,
+      height: target.clientHeight,
+      style: {
+        transform: 'none',
+        backgroundColor: '#ffffff'
+      }
     });
+    
     const link = document.createElement('a');
     link.download = `${description}-${new Date().toISOString().split('T')[0]}.png`;
     link.href = dataUrl;
     link.click();
   } catch (error) {
     console.error('Error exporting chart:', error);
-  };
+  }
 };

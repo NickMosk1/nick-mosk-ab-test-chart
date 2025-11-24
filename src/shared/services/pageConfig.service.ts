@@ -22,14 +22,11 @@ class PageConfigService {
   };
 
   async fetchPageConfig(url: string) {
-
     const mockURL = this.getMockUrl(url);
 
     this._pageConfigStore.setPageConfigLoadingState(url, true);
     const response = await this._dataService.getMockData<Page>(mockURL);
     this._pageConfigStore.setPageConfigLoadingState(url, false);
-
-    // console.log("response", JSON.stringify(response, null, 2));
 
     if (!checkAPIResponse(response)) return this._pageConfigStore.setPageConfig(url, { ...EMPTY_PAGE_DATA, url });
     return this._pageConfigStore.setPageConfig(url, response.data);

@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px 20px;
+  margin: auto;
 }
 
 .homeContent {
@@ -68,6 +68,7 @@
 }
 
 .spinner {
+  margin-top: 30px;
   width: 48px;
   height: 48px;
   border: 4px solid #e2e8f0;

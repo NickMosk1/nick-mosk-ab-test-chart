@@ -1,16 +1,16 @@
+import { PropsWithClassName } from '@/shared/types';
 import styles from './Button.module.css';
+import { PropsWithChildren } from 'react';
 
-export interface ButtonProps {
-  children: React.ReactNode;
+interface ButtonProps {
   onClick?: () => void;
   variant?: 'primary' | 'secondary';
   size?: 'small' | 'medium' | 'large';
   disabled?: boolean;
   type?: 'button' | 'submit' | 'reset';
-  className?: string;
-}
+};
 
-const Button: React.FC<ButtonProps> = ({
+const Button: React.FC<PropsWithChildren<PropsWithClassName<ButtonProps>>> = ({
   children,
   onClick,
   variant = 'primary',

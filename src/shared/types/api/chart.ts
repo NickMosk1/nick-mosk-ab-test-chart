@@ -5,7 +5,7 @@ export enum TimeRange {
   WEEK = "week",
 };
 
-export enum LineStyle {
+export enum LineType {
   MONOTONE = "monotone",
   NATURAL = "natural",
   LINEAR = "linear",
@@ -26,7 +26,7 @@ export interface Variation {
 
 export interface ChartSettings {
   timeRange: TimeRange;
-  lineStyle: LineStyle;
+  lineType: LineType;
   variations: Variation[];
   zoomEnabled: boolean;
   exportEnabled: boolean;

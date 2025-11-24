@@ -42,7 +42,7 @@ const Chart: React.FC<ChartProps> = observer(({ element }) => {
       ref={chartRef}
     >
       <div className={styles.chartHeader}>
-        <h3 className={styles.title}>{title}</h3>
+        <div className={styles.title}>{title}</div>
       </div>
 
       <ChartContainer
@@ -54,7 +54,7 @@ const Chart: React.FC<ChartProps> = observer(({ element }) => {
             data={rechartsData}
             variations={enabledVariations}
             conversionRateRange={conversionRateRange}
-            lineStyle={chartSettings.lineStyle}
+            lineType={chartSettings.lineType}
           />
         )}
       </ChartContainer>

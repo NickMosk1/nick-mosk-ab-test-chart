@@ -1,12 +1,9 @@
 import { PropsWithChildren } from 'react';
 import styles from './AppLayout.module.css';
 import { Header } from './components';
+import { PropsWithClassName } from '@/shared/types';
 
-interface AppLayoutProps {
-  className?: string;
-};
-
-const AppLayout: React.FC<PropsWithChildren<AppLayoutProps>> = ({ children, className = '' }) => {
+const AppLayout: React.FC<PropsWithChildren<PropsWithClassName>> = ({ children, className = '' }) => {
   return (
     <div className={`${styles.appLayout} ${className}`}>
       <Header />

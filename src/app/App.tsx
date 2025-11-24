@@ -1,6 +1,6 @@
 import { BrowserRouter } from 'react-router-dom';
 import { StoreProvider } from "@/shared/stores/provider";
-import { AppLayout } from "@/shared/ui";
+import { AppLayout, Toaster } from "@/shared/ui";
 import Page from './Page';
 
 const App = () => {
@@ -10,6 +10,7 @@ const App = () => {
         <AppLayout>
           <Page />
         </AppLayout>
+        <Toaster />
       </BrowserRouter>
     </StoreProvider>
   );

@@ -1,16 +1,15 @@
-import { ChipOption, ChipSelectionMode } from '@/shared/types';
-import styles from './ChipGroup.module.css';
+import { ChipOption, ChipSelectionMode, PropsWithClassName } from '@/shared/types';
+import styles from './Chips.module.css';
 
-interface ChipGroupProps {
+interface ChipsProps {
   options: ChipOption[];
   value: any;
   onChange: (value: any) => void;
   mode?: ChipSelectionMode;
   label?: string;
-  className?: string;
 };
 
-const ChipGroup: React.FC<ChipGroupProps> = ({
+const Chips: React.FC<PropsWithClassName<ChipsProps>> = ({
   options,
   value,
   onChange,
@@ -30,7 +29,7 @@ const ChipGroup: React.FC<ChipGroupProps> = ({
       onChange(newValues);
     } else {
       onChange(optionValue);
-    }
+    };
   };
 
   return (
@@ -46,12 +45,7 @@ const ChipGroup: React.FC<ChipGroupProps> = ({
               onClick={() => handleChipClick(option.value)}
               type="button"
             >
-              {option.color && (
-                <span
-                  className={styles.colorDot}
-                  style={{ backgroundColor: option.color }}
-                />
-              )}
+              {option.color && <span className={styles.colorDot} style={{ backgroundColor: option.color }} />}
               <span className={styles.labelText}>{option.label}</span>
             </button>
           );
@@ -61,4 +55,4 @@ const ChipGroup: React.FC<ChipGroupProps> = ({
   );
 };
 
-export default ChipGroup;
+export default Chips;

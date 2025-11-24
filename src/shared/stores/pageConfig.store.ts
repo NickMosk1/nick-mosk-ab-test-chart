@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx";
-import { Page } from "../types";
+import { Page } from "@/shared/types";
 
 class PageConfigStore {
   private _pageConfigs: Record<string, Page> = {};

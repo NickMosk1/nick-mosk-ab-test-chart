@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx";
-import { ChartSettings, ElementId, LineStyle, RawChartData, TimeRange } from "@/shared/types";
+import { ChartSettings, ElementId, LineType, RawChartData, TimeRange } from "@/shared/types";
 
 class ChartStore {
   private _chartDatas: Record<ElementId, RawChartData> = {};
@@ -52,8 +52,8 @@ class ChartStore {
     this.updateChartSettings(elementId, { timeRange });
   };
 
-  setLineStyle(elementId: ElementId, lineStyle: LineStyle) {
-    this.updateChartSettings(elementId, { lineStyle });
+  setLineType(elementId: ElementId, lineType: LineType) {
+    this.updateChartSettings(elementId, { lineType });
   };
 
   toggleVariation(elementId: ElementId, variationId: string) {

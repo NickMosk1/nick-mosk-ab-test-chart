@@ -18,13 +18,10 @@ export const handleExport = async (
       cacheBust: true,
       style: { transform: 'none' },
     });
-
     const link = document.createElement('a');
     link.download = `${description}-${new Date().toISOString().split('T')[0]}.png`;
     link.href = dataUrl;
     link.click();
-
-    console.log('Chart exported successfully:', target);
   } catch (error) {
     console.error('Error exporting chart:', error);
   };

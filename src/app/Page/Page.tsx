@@ -4,14 +4,13 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './Page.module.css';
 import { useStores } from '@/shared/hooks';
 import { PageConfigService } from '@/shared/services';
-import { HTTPMethods } from '@/shared';
 import PageElement from './PageElement';
 
 const Page: React.FC = observer(() => {
   const { pageConfigStore } = useStores();
   const location = useLocation();
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const currentPath = location.pathname;
   const currentPage = pageConfigStore.getPageConfig(currentPath);

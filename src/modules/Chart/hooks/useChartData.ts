@@ -1,7 +1,7 @@
-import { useMemo } from 'react';
-import ChartService from '../services/chart.service';
-import { ElementId } from '@/shared/types';
-import { useStores } from '@/shared/hooks';
+import { ElementId, TimeRange } from "@/shared/types";
+import { ChartService } from "../services";
+import { useStores } from "@/shared/hooks";
+import { useMemo } from "react";
 
 const useChartData = (chartId: ElementId) => {
   const { chartStore } = useStores();
@@ -29,12 +29,15 @@ const useChartData = (chartId: ElementId) => {
     return chartService.getConversionRateRange(preparedData);
   }, [preparedData, chartService]);
 
+  const timeRange = preparedData?.timeRange || TimeRange.DAY;
+
   return {
     rechartsData,
     conversionRateRange,
     enabledVariations,
     isLoading,
     hasData,
+    timeRange,
   };
 };
 

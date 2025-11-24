@@ -1,5 +1,3 @@
-"use client";
-
 import { PropsWithChildren, useEffect, useState } from "react";
 import { Nullable } from "@/shared/types";
 import RootStore from "../root.store";

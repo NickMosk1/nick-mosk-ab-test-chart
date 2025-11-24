@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import styles from './Controls.module.css';
-import { ExportButton, LineStyleSelector, TimeRangeSelector, VariationsSelector } from './components';
+import { ExportButton, LineTypeSelector, TimeRangeSelector, VariationsSelector } from './components';
 import { Nullable } from '@/shared/types';
 
 interface ControlsProps {
@@ -14,7 +14,7 @@ const Controls: React.FC<ControlsProps> = observer(({ chartId, chartRef }) => {
       <div className={styles.primaryControls}>
         <VariationsSelector chartId={chartId} />
         <TimeRangeSelector chartId={chartId} />
-        <LineStyleSelector chartId={chartId} />
+        <LineTypeSelector chartId={chartId} />
       </div>
 
       <div className={styles.secondaryControls}>

@@ -9,28 +9,28 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import styles from "./LineChart.module.css";
-import { Variation, LineStyle } from "@/shared/types";
+import { Variation, LineType } from "@/shared/types";
 import { Tooltip as CustomTooltip, Legend as CustomLegend } from "./components";
 
 interface LineChartProps {
   data: any[];
   variations: Variation[];
   conversionRateRange: { min: number; max: number };
-  lineStyle: LineStyle;
+  lineType: LineType;
 };
 
 const LineChart: React.FC<LineChartProps> = ({
   data,
   variations,
   conversionRateRange,
-  lineStyle,
+  lineType,
 }) => {
   return (
     <div className={styles.lineChart}>
-      <ResponsiveContainer width="100%" height={400}>
+      <ResponsiveContainer width="100%" height="100%">
         <RechartsLineChart
           data={data}
-          margin={{ top: 20, right: 30, left: 20, bottom: 10 }}
+          margin={{ top: 20, right: 20, left: 20, bottom: 20 }}
         >          
           <CartesianGrid
             strokeDasharray="3 3"
@@ -55,7 +55,7 @@ const LineChart: React.FC<LineChartProps> = ({
           {variations.map((variation) => (
             <Line
               key={variation.id}
-              type={lineStyle}
+              type={lineType}
               dataKey={`variation_${variation.id}`}
               name={variation.name}
               stroke={variation.color}

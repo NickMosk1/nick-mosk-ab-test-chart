@@ -2,9 +2,6 @@
   background: rgba(255, 255, 255, 0.95);
   border-bottom: 1px solid #e2e8f0;
   padding: 0;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   backdrop-filter: blur(10px);
 }
@@ -16,7 +13,38 @@
   max-width: 1400px;
   margin: 0 auto;
   padding: 20px 32px;
-  gap: 24px;
+  gap: 15px;
+}
+
+.logoSection {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.logoButton {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  border-radius: 8px;
+}
+
+.logoButton:hover {
+  transform: scale(1.05);
+}
+
+.logoButton:active {
+  transform: scale(0.95);
+}
+
+.logo {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  display: block;
 }
 
 .pageInfo {
@@ -78,6 +106,10 @@
   .pageTitle {
     font-size: 24px;
   }
+  
+  .logo {
+    height: 36px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -93,6 +125,10 @@
   .themeToggle {
     width: 40px;
     height: 40px;
+  }
+  
+  .logo {
+    height: 32px;
   }
 }
 
@@ -117,5 +153,9 @@
   .pageTitle {
     font-size: 22px;
     text-align: center;
+  }
+  
+  .logoSection {
+    align-self: center;
   }
 }

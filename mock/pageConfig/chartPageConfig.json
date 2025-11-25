@@ -1,0 +1,50 @@
+{
+  "data": {
+    "url": "/charts",
+    "title": "Charts Dashboard",
+    "elements": [
+      {
+        "id": "conversion-chart",
+        "type": "CHART",
+        "title": "Conversion Rates Over Time",
+        "dataSourceEndpoint": {
+          "url": "/chart-data-1",
+          "method": "GET"
+        },
+        "settings": {
+          "timeRange": "day",
+          "lineType": "linear",
+          "variations": [
+            {
+              "id": "0",
+              "name": "Original",
+              "color": "#8884d8",
+              "enabled": true
+            },
+            {
+              "id": "10001",
+              "name": "Variation A",
+              "color": "#82ca9d",
+              "enabled": true
+            },
+            {
+              "id": "10002",
+              "name": "Variation B",
+              "color": "#ffc658",
+              "enabled": true
+            },
+            {
+              "id": "10003",
+              "name": "Variation C",
+              "color": "#ff8042",
+              "enabled": true
+            }
+          ],
+          "zoomEnabled": true,
+          "exportEnabled": true,
+          "colors": ["#8884d8", "#82ca9d", "#ffc658", "#ff8042"]
+        }
+      }
+    ]
+  }
+}

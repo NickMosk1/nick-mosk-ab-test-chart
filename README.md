@@ -1,46 +1,127 @@
-# Getting Started with Create React App
+# A/B Test Analytics Dashboard
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![React](https://img.shields.io/badge/React-18.x-blue)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue)
+![Vite](https://img.shields.io/badge/Vite-5.x-purple)
+![Recharts](https://img.shields.io/badge/Recharts-2.x-green)
 
-## Available Scripts
+An interactive dashboard for visualizing A/B test statistics with real-time conversion rate charts.
 
-In the project directory, you can run:
+## 🚀 Live Demo
 
-### `npm start`
+**[Live Demo on GitHub Pages](https://nickmosk1.github.io/nick-mosk-ab-test-chart/)**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 📊 Features
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### ✅ Core Requirements
+- **📈 Interactive Line Chart** displaying conversion rates for all variations
+- **🔍 Interactive Tooltip** with detailed information on hover
+- **🎛️ Variations Selector** with at least one variation always selected
+- **📅 Data Grouping** by day/week
+- **📱 Responsive Design** for screens 671px - 1300px+
+- **🔄 Automatic Axis Scaling** to fit visible data range
+- **📊 Percentage Display** of all values
 
-### `npm test`
+### ⭐ Bonus Features
+- **🎨 Line Type Selector** (Line, Smooth, Area)
+- **📤 Chart Export** to PNG format
+- **⚡ Fast Loading** with Vite
+- **🏗️ Modular Architecture** with MobX state management
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🛠️ Tech Stack
 
-### `npm run build`
+- **Frontend**: React 18 + TypeScript
+- **Build Tool**: Vite
+- **Charts**: Recharts
+- **State Management**: MobX
+- **HTTP Client**: Axios
+- **Styling**: CSS Modules
+- **Deployment**: GitHub Pages
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🏃‍♂️ Quick Start
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Prerequisites
+- Node.js 18+
+- npm or yarn
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Installation & Development
 
-### `npm run eject`
+```bash
+# Clone repository
+git clone https://github.com/nickmosk1/nick-mosk-ab-test-chart.git
+cd nick-mosk-ab-test-chart
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+# Install dependencies
+npm install
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Start development server
+npm run dev
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+# Build for production
+npm run build
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+# Preview production build
+npm run preview
 
-## Learn More
+# Deploy to GitHub Pages
+npm run deploy
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The application will be available at: `http://localhost:5173`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🎯 Usage
+
+### Core Functionality
+
+1. **View Conversion Charts**
+   - Chart automatically calculates conversionRate = (conversions / visits) * 100
+   - All values displayed as percentages
+
+2. **Manage Variations**
+   - Select displayed variations via chips component
+   - At least one variation must always be selected
+
+3. **Data Grouping**
+   - Switch between daily and weekly view
+   - Data aggregation for weekly grouping
+
+4. **Display Settings**
+   - Choose line type: Line, Smooth, etc.
+
+5. **Data Export**
+   - Download current chart as PNG
+
+## 📊 Implementation Highlights
+
+### Architecture
+- **Modular structure** for scalability
+- **MobX** for reactive state management
+- **TypeScript** for type safety
+- **CSS Modules** for scoped styling
+
+### Data Flow
+```
+Mock Data → Data Service → MobX Store → Components → Recharts
+```
+
+## 🚀 Deployment
+
+The project automatically deploys to GitHub Pages on push to the `dev` branch via GitHub Actions.
+
+```yaml
+name: Deploy to GitHub Pages
+on:
+  push:
+    branches: [dev]
+```
+
+## 📄 License
+
+This project was created as part of a technical assignment.
+
+## 👨‍💻 Author
+
+**Nick Mosk**
+- GitHub: [@nickmosk1](https://github.com/nickmosk1)
+
+---

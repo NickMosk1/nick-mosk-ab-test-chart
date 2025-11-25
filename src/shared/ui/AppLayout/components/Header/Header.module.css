@@ -97,7 +97,6 @@
   transform: rotate(15deg);
 }
 
-/* Responsive */
 @media (max-width: 1024px) {
   .headerContent {
     padding: 18px 24px;

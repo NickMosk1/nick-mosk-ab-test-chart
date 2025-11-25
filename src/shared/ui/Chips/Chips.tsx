@@ -28,30 +28,18 @@ const Chips: React.FC<PropsWithClassName<ChipsProps>> = ({
     if (mode === ChipSelectionMode.MULTIPLE) {
       const currentValues = Array.isArray(value) ? value : [];
       const isCurrentlySelected = currentValues.includes(optionValue);
-      
-      // Если пытаемся снять последний выбранный чип и requireAtLeastOne = true - блокируем
-      if (requireAtLeastOne && isCurrentlySelected && currentValues.length === 1) {
-        return;
-      }
-      
-      const newValues = isCurrentlySelected 
-        ? currentValues.filter(v => v !== optionValue) 
-        : [...currentValues, optionValue];
-      
+      if (requireAtLeastOne && isCurrentlySelected && currentValues.length === 1) return;
+      const newValues = isCurrentlySelected ? currentValues.filter(v => v !== optionValue)  : [...currentValues, optionValue];
       onChange(newValues);
     } else {
       onChange(optionValue);
-    }
+    };
   };
 
-  // Проверяем, заблокирован ли чип (только для MULTIPLE режима с requireAtLeastOne)
   const isChipDisabled = (optionValue: string): boolean => {
     if (mode !== ChipSelectionMode.MULTIPLE || !requireAtLeastOne) return false;
-    
     const currentValues = Array.isArray(value) ? value : [];
     const isCurrentlySelected = currentValues.includes(optionValue);
-    
-    // Чип заблокирован если он выбран и это последний выбранный чип
     return isCurrentlySelected && currentValues.length === 1;
   };
 

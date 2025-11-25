@@ -4,14 +4,15 @@ import styles from './Header.module.css';
 import { useStores } from '@/shared/hooks';
 import { PropsWithClassName } from '@/shared/types';
 import { APP_CONFIG } from '@/shared/config/app-config';
+import { getPageUrl } from './utils';
 
 const Header: React.FC<PropsWithClassName> = observer(({ className = '' }) => {
   const { pageConfigStore } = useStores();
   const location = useLocation();
   const navigate = useNavigate();
-  const currentPage = pageConfigStore.getPageConfig(location.pathname);
   
-  const pageTitle = location.pathname === `${APP_CONFIG.BASE_PATH}/` ? "Home" : currentPage?.title?.length ? currentPage.title : "Page Not Found";
+  const currentPage = pageConfigStore.getPageConfig(location.pathname);
+  const pageTitle = getPageUrl(location.pathname, currentPage?.title);
 
   const handleLogoClick = () => navigate(`${APP_CONFIG.BASE_PATH}/`);
 

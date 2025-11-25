@@ -2,6 +2,7 @@ import { observer } from 'mobx-react-lite';
 import styles from './Controls.module.css';
 import { ExportButton, LineTypeSelector, TimeRangeSelector, VariationsSelector } from './components';
 import { Nullable } from '@/shared/types';
+import { useState, useEffect } from 'react';
 
 interface ControlsProps {
   chartId: string;
@@ -9,6 +10,12 @@ interface ControlsProps {
 };
 
 const Controls: React.FC<ControlsProps> = observer(({ chartId, chartRef }) => {
+  const [currentChartElement, setCurrentChartElement] = useState<Nullable<HTMLElement>>(null);
+
+  useEffect(() => {
+    if (chartRef.current) setCurrentChartElement(chartRef.current);
+  }, [chartRef.current]);
+
   return (
     <div className={styles.controlsContainer}>
       <div className={styles.primaryControls}>
@@ -20,7 +27,7 @@ const Controls: React.FC<ControlsProps> = observer(({ chartId, chartRef }) => {
       <div className={styles.secondaryControls}>
         <ExportButton 
           chartId={chartId} 
-          chartElement={chartRef?.current}
+          chartElement={currentChartElement}
         />
       </div>
     </div>

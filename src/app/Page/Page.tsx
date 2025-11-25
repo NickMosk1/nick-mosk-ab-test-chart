@@ -5,6 +5,7 @@ import styles from './Page.module.css';
 import { useStores } from '@/shared/hooks';
 import { PageConfigService } from '@/shared/services';
 import PageElement from './PageElement';
+import { APP_CONFIG } from '@/shared/config/app-config';
 
 const Page: React.FC = observer(() => {
   const { pageConfigStore } = useStores();
@@ -15,25 +16,26 @@ const Page: React.FC = observer(() => {
   const currentPath = location.pathname;
   const currentPage = pageConfigStore.getPageConfig(currentPath);
 
-  useEffect(() => {
-    const loadPageConfig = async () => {
-      setIsLoading(true);
+  const loadPageConfig = async () => {
+    setIsLoading(true);
 
-      try {
-        if (!currentPage) {
-          const pageConfigService = PageConfigService.getInstance();
-          await pageConfigService.fetchPageConfig(currentPath);
-        };
-      } catch (error) {
-        console.error('Failed to load page config:', error);
-      } finally {
-        setIsLoading(false);
+    try {
+      if (!currentPage && currentPath !== `${APP_CONFIG.BASE_PATH}/`) {
+        const pageConfigService = PageConfigService.getInstance();
+        await pageConfigService.fetchPageConfig(currentPath);
       };
+    } catch (error) {
+      console.error('Failed to load page config:', error);
+    } finally {
+      setIsLoading(false);
     };
+  };
+
+  useEffect(() => {
     loadPageConfig();
   }, [currentPath, currentPage, pageConfigStore]);
 
-  if (currentPath === '/') {
+  if (currentPath === `${APP_CONFIG.BASE_PATH}/`) {
     return (
       <div className={styles.homePage}>
         <div className={styles.homeContent}>
@@ -43,7 +45,7 @@ const Page: React.FC = observer(() => {
           </p>
           <button
             className={styles.chartsButton}
-            onClick={() => navigate('/charts')}
+            onClick={() => navigate(`${APP_CONFIG.BASE_PATH}/charts`)}
           >
             View Charts Dashboard
           </button>
@@ -66,12 +68,7 @@ const Page: React.FC = observer(() => {
       <div className={styles.errorPage}>
         <h2>Page not found</h2>
         <p>No configuration found for: {currentPath}</p>
-        <button
-          className={styles.backButton}
-          onClick={() => navigate('/')}
-        >
-          Back to Home
-        </button>
+        <button className={styles.backButton} onClick={() => navigate(`${APP_CONFIG.BASE_PATH}/`)}> Back to Home </button>
       </div>
     );
   };

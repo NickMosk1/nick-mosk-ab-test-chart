@@ -62,7 +62,7 @@ const LineChart: React.FC<LineChartProps> = ({
               strokeWidth={2}
               dot={false}
               activeDot={{ r: 4, strokeWidth: 2 }}
-              isAnimationActive={true}
+              isAnimationActive
             />
           ))}
         </RechartsLineChart>

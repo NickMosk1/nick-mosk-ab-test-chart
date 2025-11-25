@@ -16,6 +16,7 @@ import { EMPTY_CHART_DATA } from "@/shared/constants";
 import { DataService } from "@/shared/services";
 import { CHART_STORE } from "@/shared/stores/provider";
 import { checkAPIResponse, Injector } from "@/shared/utils";
+import { APP_CONFIG } from "@/shared/config/app-config";
 
 class ChartService {
   private static _instance: ChartService;
@@ -52,7 +53,7 @@ class ChartService {
   private getMockUrl(url: string): string {
     switch (url) {
       case "/chart-data-1":
-        return "/mock/data/chartData.json";
+        return `${APP_CONFIG.BASE_PATH}/mock/data/chartData.json`;
       default:
         return "/";
     };

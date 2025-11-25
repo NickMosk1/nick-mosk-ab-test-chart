@@ -23,6 +23,11 @@
   gap: 12px;
 }
 
+.exportBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 @media (max-width: 768px) {
   .controlsContainer {
     flex-direction: column;

@@ -1,9 +1,10 @@
 import { EMPTY_PAGE_DATA } from "@/shared/constants";
 import { PageConfigStore } from "@/shared/stores";
 import { PAGE_CONFIG_STORE } from "@/shared/stores/provider";
-import { Endpoint, Page } from "@/shared/types";
+import { Page } from "@/shared/types";
 import { checkAPIResponse, Injector } from "@/shared/utils";
 import DataService from "./data.service";
+import { APP_CONFIG } from "../config/app-config";
 
 class PageConfigService {
   private static _instance: PageConfigService;
@@ -11,7 +12,7 @@ class PageConfigService {
 
   private _dataService: DataService;
 
-  constructor () {
+  constructor() {
     this._pageConfigStore = Injector.get<PageConfigStore>(PAGE_CONFIG_STORE);
 
     this._dataService = DataService.getInstance();
@@ -34,10 +35,10 @@ class PageConfigService {
 
   private getMockUrl(url: string): string {
     switch (url) {
-      case "/charts":
-        return "/mock/pageConfig/chartPageConfig.json";
+      case `${APP_CONFIG.BASE_PATH}/charts`:
+        return `${APP_CONFIG.BASE_PATH}/mock/pageConfig/chartPageConfig.json`;
       default:
-        return "/";
+        return APP_CONFIG.BASE_PATH || "/";
     };
   };
 };

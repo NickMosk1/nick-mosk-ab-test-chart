@@ -2,7 +2,7 @@
   "name": "nick-mosk-ab-test-chart",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://yourusername.github.io",
+  "homepage": "https://nickmosk1.github.io/nick-mosk-ab-test-chart",
   "type": "module",
   "dependencies": {
     "@testing-library/dom": "^10.4.1",

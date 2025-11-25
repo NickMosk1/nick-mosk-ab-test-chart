@@ -35,6 +35,7 @@ const VariationsSelector: React.FC<VariationsSelectorProps> = observer(({ chartI
       value={selectedVariations}
       onChange={handleVariationsChange}
       mode={ChipSelectionMode.MULTIPLE}
+      requireAtLeastOne
       label="Variations:"
     />
   );
